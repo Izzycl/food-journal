@@ -1,3 +1,4 @@
+import { useIsFocused } from "@react-navigation/native";
 import * as SQLite from "expo-sqlite";
 import { useEffect, useState } from "react";
 import { StyleSheet } from "react-native";
@@ -8,7 +9,7 @@ export const useListFood = () => {
   const [loading, setLoading] = useState<boolean>(false);
   function getFoods() {
     db.transaction((tx) => {
-      tx.executeSql("select * from foods", [], (_, { rows }) => {
+      tx.executeSql("SELECT * FROM foods;", [], (_, { rows }) => {
         console.log(rows);
         setFoods(rows._array);
       });
@@ -27,10 +28,12 @@ export const useListFood = () => {
       setLoading(false);
     }
   }
-
+  const isFocused = useIsFocused();
   useEffect(() => {
-    initialFetch();
-  }, []);
+    if (isFocused) {
+      initialFetch();
+    }
+  }, [isFocused]);
 
   useEffect(() => {
     if (foods) console.log(foods);

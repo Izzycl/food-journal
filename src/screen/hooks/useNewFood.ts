@@ -20,9 +20,9 @@ export const useNewFood = (camera: any) => {
   };
 
   const takePicture = async () => {
-    const photo: any = await camera.current.takePictureAsync({ base64: true });
+    const photo: any = await camera.current.takePictureAsync();
     if (photo) {
-      console.log(photo.base64);
+      console.log(photo);
       setPreviewVisible(true);
       setCapturedImage(photo);
       setStartCamera(false);
@@ -33,7 +33,7 @@ export const useNewFood = (camera: any) => {
     db.transaction((tx) => {
       tx.executeSql(
         "INSERT INTO foods (image, description) values (?, ?)",
-        [image, description.toString()],
+        [image, description],
         (txObj, resultSet) => {
           Alert.alert("!!", "Food Save!", [
             { text: "OK", onPress: () => console.log("OK Pressed") },

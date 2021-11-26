@@ -41,6 +41,29 @@ const HomeScreen = (props: PropsWithChildren<HomeScreenProps>) => {
     });
   }, []);
 
+  function getFoods() {
+    db.transaction((tx) => {
+      tx.executeSql(
+        "SELECT * FROM foods;",
+        [],
+        (_, { rows }) => {
+          console.log("fn2");
+          console.log(rows);
+        },
+        //@ts-ignore
+        (x, er) => console.log(er)
+      );
+    });
+  }
+
+  function deleteTable() {
+    db.transaction((tx) => {
+      tx.executeSql("DROP TABLE IF EXISTS foods;", [], (_, { rows }) => {
+        console.log(rows);
+      });
+    });
+  }
+
   return (
     <ContentLayout header={false}>
       <View style={styles.container}>
@@ -52,6 +75,9 @@ const HomeScreen = (props: PropsWithChildren<HomeScreenProps>) => {
           label="Create new food"
           onPress={() => onPressButton("new")}
         />
+        <Text style={{ width: "100%", textAlign: "center" }}>Dev buttons</Text>
+        <CustomButton label="GET FOODS" onPress={() => getFoods()} />
+        <CustomButton label="GET FOODS" onPress={() => deleteTable()} />
       </View>
     </ContentLayout>
   );

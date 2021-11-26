@@ -57,7 +57,7 @@ const NewFood: FC<NewFoodProps> = (props) => {
             </View>
             <CustomButton
               label="Create new Foods in Journalist"
-              onPress={() => createFood(capturedImage.base64, description!)}
+              onPress={() => createFood(capturedImage.uri, description!)}
               baseStyle={{ marginTop: 10 }}
             />
           </View>
@@ -65,10 +65,7 @@ const NewFood: FC<NewFoodProps> = (props) => {
           <View
             style={{ ...styles.btnContainer, ...{ justifyContent: "center" } }}
           >
-            <CustomButton
-              label="Open Camera"
-              onPress={() => setStartCamera(true)}
-            />
+            <CustomButton label="Open Camera" onPress={() => openCamera()} />
           </View>
         )}
       </View>

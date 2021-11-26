@@ -78,7 +78,7 @@ const ListFood: FC<ListFoodProps> = (props) => {
                 >
                   <Image
                     source={{
-                      uri: `data:image/jpeg;base64,${data.item.image}`,
+                      uri: `${data.item.image}`,
                     }}
                     style={{
                       width: 150,
