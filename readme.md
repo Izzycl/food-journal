@@ -1,6 +1,6 @@
 # A Simple Food Journal for codementor project
 
-<br/>
+
 ```sh
 cd food-journal
 yarn install
