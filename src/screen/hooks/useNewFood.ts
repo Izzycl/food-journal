@@ -36,7 +36,13 @@ export const useNewFood = (camera: any) => {
         [image, description],
         (txObj, resultSet) => {
           Alert.alert("!!", "Food Save!", [
-            { text: "OK", onPress: () => console.log("OK Pressed") },
+            {
+              text: "OK",
+              onPress: () => {
+                setCapturedImage(null);
+                setDescription("");
+              },
+            },
           ]);
         },
         //@ts-ignore
@@ -97,6 +103,9 @@ export const useNewFood = (camera: any) => {
     textInputLabel: {
       marginBottom: 5,
     },
+    titleNewFood: {
+      marginBottom: 10,
+    },
   });
 
   return {
@@ -109,5 +118,6 @@ export const useNewFood = (camera: any) => {
     createFood,
     description,
     setDescription,
+    setCapturedImage,
   };
 };

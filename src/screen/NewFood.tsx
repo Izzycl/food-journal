@@ -1,5 +1,5 @@
 import React, { FC, useRef } from "react";
-import { View, Text, TextInput } from "react-native";
+import { View, Text, TextInput, useWindowDimensions } from "react-native";
 import ContentLayout from "../layouts/ContentLayout";
 import { Camera } from "expo-camera";
 import { useNewFood } from "./hooks/useNewFood";
@@ -20,8 +20,9 @@ const NewFood: FC<NewFoodProps> = (props) => {
     setDescription,
     description,
     createFood,
+    setCapturedImage,
   } = useNewFood(camera);
-
+  const { height } = useWindowDimensions();
   return (
     <ContentLayout scrollView={true}>
       <ModalCustom
@@ -63,8 +64,14 @@ const NewFood: FC<NewFoodProps> = (props) => {
           </View>
         ) : (
           <View
-            style={{ ...styles.btnContainer, ...{ justifyContent: "center" } }}
+            style={{
+              ...styles.btnContainer,
+              ...{ justifyContent: "center", height: height - 140 },
+            }}
           >
+            <Text style={styles.titleNewFood}>
+              To created a new Food press "Open Camera"
+            </Text>
             <CustomButton label="Open Camera" onPress={() => openCamera()} />
           </View>
         )}

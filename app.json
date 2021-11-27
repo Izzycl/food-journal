@@ -1,7 +1,8 @@
 {
   "expo": {
-    "name": "food-journal",
+    "name": "Food Journal",
     "slug": "food-journal",
+    "description": "A simple Food journal made for 'codementor projects'",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -13,9 +14,7 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
     },

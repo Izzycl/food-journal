@@ -68,16 +68,16 @@ const HomeScreen = (props: PropsWithChildren<HomeScreenProps>) => {
     <ContentLayout header={false}>
       <View style={styles.container}>
         <CustomButton
-          label="Show Food List"
+          label="Show list of foods"
           onPress={() => onPressButton("list")}
         />
         <CustomButton
           label="Create new food"
           onPress={() => onPressButton("new")}
         />
-        <Text style={{ width: "100%", textAlign: "center" }}>Dev buttons</Text>
+        {/* <Text style={{ width: "100%", textAlign: "center" }}>Dev buttons</Text>
         <CustomButton label="GET FOODS" onPress={() => getFoods()} />
-        <CustomButton label="GET FOODS" onPress={() => deleteTable()} />
+        <CustomButton label="DELETE TABLE" onPress={() => deleteTable()} /> */}
       </View>
     </ContentLayout>
   );

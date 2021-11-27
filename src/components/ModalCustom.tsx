@@ -6,6 +6,7 @@ import {
   useWindowDimensions,
   Pressable,
   Text,
+  Image,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -35,12 +36,12 @@ export const ModalCustom = (props: ModalCustomProps) => {
       justifyContent: "space-between",
     },
     btn: {
-      width: 45,
-      height: 45,
+      width: 60,
+      height: 60,
       backgroundColor: "red",
       justifyContent: "center",
       alignItems: "center",
-      borderRadius: 25,
+      borderRadius: 30,
     },
     btnLabel: {
       fontSize: 30,
@@ -57,6 +58,17 @@ export const ModalCustom = (props: ModalCustomProps) => {
       paddingHorizontal: 10,
       paddingVertical: 20,
     },
+    cameraIcon: {
+      width: 35,
+      height: 35,
+    },
+    btnClose: {
+      width: 40,
+      height: 40,
+      justifyContent: "center",
+      alignItems: "center",
+      borderRadius: 30,
+    },
   });
 
   return (
@@ -64,15 +76,24 @@ export const ModalCustom = (props: ModalCustomProps) => {
       <View style={styles.base}>
         <SafeAreaView style={styles.safeArea}>
           <View style={styles.overView}>
-            <Pressable style={styles.btn} onPress={onClose}>
-              <Text style={styles.btnLabel}>x</Text>
+            <Pressable style={styles.btnClose} onPress={onClose}>
+              <Image
+                source={require("../assets/close.png")}
+                style={styles.cameraIcon}
+              />
             </Pressable>
 
             <Pressable
-              style={{ ...styles.btn, ...{ alignSelf: "center" } }}
+              style={{
+                ...styles.btn,
+                ...{ alignSelf: "center", backgroundColor: "#A30015" },
+              }}
               onPress={onTakePhoto}
             >
-              <Text style={styles.btnLabel}>o</Text>
+              <Image
+                source={require("../assets/camera.png")}
+                style={styles.cameraIcon}
+              />
             </Pressable>
           </View>
         </SafeAreaView>

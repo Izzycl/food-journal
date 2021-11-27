@@ -1,17 +1,25 @@
 import { useIsFocused } from "@react-navigation/native";
 import * as SQLite from "expo-sqlite";
 import { useEffect, useState } from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, useWindowDimensions } from "react-native";
 import { Food } from "../../models/Food";
 export const useListFood = () => {
   const db = SQLite.openDatabase("db.db");
   const [foods, setFoods] = useState<Food[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
+  const { height } = useWindowDimensions();
   function getFoods() {
     db.transaction((tx) => {
       tx.executeSql("SELECT * FROM foods;", [], (_, { rows }) => {
-        console.log(rows);
         setFoods(rows._array);
+      });
+    });
+  }
+
+  function deleteFood(id: number) {
+    db.transaction((tx) => {
+      tx.executeSql("DELETE FROM foods WHERE id=?;", [id], () => {
+        getFoods();
       });
     });
   }
@@ -45,6 +53,25 @@ export const useListFood = () => {
       height: 200,
       backgroundColor: "yellow",
     },
+    emptyItem: {
+      width: "100%",
+      height: height - 140,
+      alignItems: "center",
+      justifyContent: "center",
+    },
+    separatorItem: {
+      width: "100%",
+      height: 10,
+    },
+    flatList: {
+      width: "100%",
+      marginTop: 10,
+      height: height - 140,
+    },
+    emptyItemText: {
+      fontSize: 20,
+      fontWeight: "bold",
+    },
   });
 
   return {
@@ -52,5 +79,6 @@ export const useListFood = () => {
     loading,
     setLoading,
     styles,
+    deleteFood,
   };
 };
